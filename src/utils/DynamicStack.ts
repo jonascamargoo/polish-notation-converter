@@ -1,21 +1,17 @@
 class Cell<T> {
     constructor(
         public item: T,
-        public next: Cell<T> | null = null
+        public next: Cell<T> | undefined = undefined
     ) {}
 }
 
-
-class DynamicStack<T extends Cell<NonNullable<T>>> {
+class DynamicStack<T> {
     constructor(
-        public top: Cell<T> | null = null,
+        public top: Cell<T> | undefined = undefined,
         public size: number = 0
     ) {}
 
     push(item: T): void {
-        if(item == null) {
-            throw new Error("item nulo");
-        }
         const newCell = new Cell(item);
         newCell.next = this.top;
         this.top = newCell;
@@ -31,29 +27,32 @@ class DynamicStack<T extends Cell<NonNullable<T>>> {
         return aux;
     }
 
-    isEmpty = (): boolean => this.top === null;
+    isEmpty = (): boolean => this.top === undefined;
 
     getSize = (): number => this.size;
 
-    peek = (): T | null => this.top ? this.top.item : null;
+    peek = (): T | undefined => this.top?.item;
 
-    getBottom = (): T | null => this.get(this.size - 1);
+    getBottom = (): T | undefined => this.get(this.size - 1);
     
     get = (position: number): T => {
         if (position < 0 || position >= this.size)
             throw new Error("Posição inválida");
-        let current: Cell<T> | null = this.top;
-        for (let i = 0; i < position; i++) {
-          if (current === null)
-            throw new Error("A lista está inconsistente");
-          current = current.next;
+
+        let current: Cell<T> | undefined = this.top;
+        let i = 0;
+
+        while (current && i < position) {
+            current = current.next;
+            i++;
         }
-        if (current === null)
+
+        if (!current)
             throw new Error("A lista está inconsistente");
+
         return current.item;
     };
 
-    
     print(): void {
         if (this.isEmpty())
           console.log("A pilha está vazia.");
@@ -63,9 +62,4 @@ class DynamicStack<T extends Cell<NonNullable<T>>> {
         
         console.log();
     }
-      
-
-    
-
-
 }
