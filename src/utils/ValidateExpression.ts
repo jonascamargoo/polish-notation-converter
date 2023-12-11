@@ -2,16 +2,20 @@ import { DynamicStack } from "./DynamicStack";
 
 export class ValidateExpression {
 
+
     hasNumberAfterOperator = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
-        for (let i = 1; i < expression.getSize() - 1; i++) {
-            if(
+        for (let i = 1; i < expression.getSize(); i++) {
+            if (
                 this.isOperator(expression.get(i)) &&
                 this.isOperator(expression.get(i - 1))
-            ) return false;
+            ) {
+                return false;
+            }
         }
         return true;
     };
+    
 
     isOperator = (character: string): boolean => {
         return  character == '+' ||
@@ -81,7 +85,7 @@ export class ValidateExpression {
     };
 
 
-    // RETAFORAR
+    // 
     checkParentheses = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
     
@@ -93,20 +97,19 @@ export class ValidateExpression {
         if (expression.base() !== '(' && !this.isDigit(expression.base())) {
             return false;
         }
-    
+
         // Analisando as posições intermediárias
-        for (let i = expression.getSize() - 2; i > 0; i--) {
+        for (let i = 1; i <= expression.getSize() - 2; i++) {
             if (expression.get(i) === '(') {
-                if (expression.get(i - 1) !== '(' && !this.isDigit(expression.get(i - 1))) {
+                if (expression.get(i - 1) !== '(' && !this.isDigit(expression.get(i - 1)))
                     return false;
-                }
-    
-                if (expression.get(i + 1) !== '(' && !this.isOperator(expression.get(i + 1))) {
+                if (expression.get(expression.getSize()-1) == ')')
                     return false;
-                }
             }
     
             if (expression.get(i) === ')') {
+                if(expression.get(1) == ')')
+                    return false;
                 if (expression.get(i + 1) !== ')' && !this.isDigit(expression.get(i + 1))) {
                     return false;
                 }
@@ -115,10 +118,14 @@ export class ValidateExpression {
                     return false;
                 }
             } 
+
+            
         }
-    
+
         return true;
     };
+
+   
 
     validateParenthesesExpression = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
@@ -150,13 +157,14 @@ export class ValidateExpression {
     checkSyntaxExpression = (inputExpression: string): boolean => {
         return  this.hasNumberAfterOperator(inputExpression) &&
                 this.hasMoreNumberThanOperator(inputExpression) &&
-                this.checkParentheses(inputExpression) &&
+                this.validateParenthesesExpression(inputExpression) &&
                 this.numberHasOneDigit(inputExpression);
     };
 
 
 
 }
+
 
 
     
