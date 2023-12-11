@@ -64,14 +64,13 @@ describe('DynamicStack', () => {
     expect(consoleLogSpy).toHaveBeenCalledWith(53);
     expect(consoleLogSpy).toHaveBeenCalledWith(42);
 
-    // Restaurar o console.log original
+    // restore original console
     consoleLogSpy.mockRestore();
   });
 
 
 });
 
-// Você também pode escrever testes para a classe Cell se ela tiver lógica adicional
 describe('Cell', () => {
   test('create Cell', () => {
     const cell = new Cell(42);
@@ -79,5 +78,4 @@ describe('Cell', () => {
     expect(cell.next).toBeUndefined();
   });
 
-  // Adicione mais testes conforme necessário
 });

@@ -1,15 +1,14 @@
 export class Cell<T> {
     constructor(
         public item: T,
-        
         public next: Cell<T> | undefined = undefined
     ) {}
 }
 
 export class DynamicStack<T>{
     constructor(
-        public top: Cell<T> | undefined = undefined,
-        public size: number = 0
+        protected top: Cell<T> | undefined = undefined,
+        protected size: number = 0
     ) {}
 
     push(item: T): void {
@@ -32,9 +31,9 @@ export class DynamicStack<T>{
 
     getSize = (): number => this.size;
 
-    peek = (): T | undefined => this.top?.item;
+    peek = (): T => this.get(this.size - 1);
 
-    base = (): T | undefined => this.get(0);
+    base = (): T => this.get(0);
     
     get = (position: number): T => {
         if (position < 0 || position >= this.size)
@@ -50,11 +49,23 @@ export class DynamicStack<T>{
         return current.item;
     };
 
+
+
+    static splitString(inputString: string): DynamicStack<string> {
+        const stack = new DynamicStack<string>();
+        for (let i = 0; i < inputString.length; i++) {
+            stack.push(inputString[i]);
+        }
+        return stack;
+    }
+
+    
     print(): void {
         if (this.isEmpty())
           console.log("Empity stack");
+        console.log("Base\n")
         for (let i = this.size - 1; i >= 0; i--)
           console.log(this.get(i));
-        console.log();
+        console.log("\nTop");
     }
 }
