@@ -22,6 +22,7 @@ export class ValidateExpression {
                 character == '-' ||
                 character == '*' ||
                 character == '/' ||
+                character == '=' ||
                 character == '^';
 
     };
@@ -85,43 +86,14 @@ export class ValidateExpression {
     };
 
 
-    // 
-    checkParentheses = (inputExpression: string): boolean => {
+   
+    checkBasePeek = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
-    
-        // Analisando os extremos da pilha
-        if (expression.peek() !== ')' && !this.isDigit(expression.peek())) {
+        // Check base and top
+        if (expression.peek() !== ')' && !this.isDigit(expression.peek()))
             return false;
-        }
-    
-        if (expression.base() !== '(' && !this.isDigit(expression.base())) {
+        if (expression.base() !== '(' && !this.isDigit(expression.base()))
             return false;
-        }
-
-        // Analisando as posições intermediárias
-        for (let i = 1; i <= expression.getSize() - 2; i++) {
-            if (expression.get(i) === '(') {
-                if (expression.get(i - 1) !== '(' && !this.isDigit(expression.get(i - 1)))
-                    return false;
-                if (expression.get(expression.getSize()-1) == ')')
-                    return false;
-            }
-    
-            if (expression.get(i) === ')') {
-                if(expression.get(1) == ')')
-                    return false;
-                if (expression.get(i + 1) !== ')' && !this.isDigit(expression.get(i + 1))) {
-                    return false;
-                }
-    
-                if (expression.get(i - 1) !== ')' && !this.isOperator(expression.get(i - 1))) {
-                    return false;
-                }
-            } 
-
-            
-        }
-
         return true;
     };
 
@@ -130,14 +102,14 @@ export class ValidateExpression {
     validateParenthesesExpression = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
 
-        // Verificar se a expressão tem parênteses balanceados
-        if (!this.checkParentheses(inputExpression)) {
+        // Check if the expression has balanced parentheses
+        if (!this.checkBasePeek(inputExpression)) {
             return false;
         }
 
-        // Checar a ordem dos parênteses
+        // Check the order of parentheses
         const auxStack = new DynamicStack<string>();
-        for (let i = expression.getSize() - 1; i >= 0; i--) {
+        for (let i = 0; i <= expression.getSize() - 1; i++) {
             if (expression.get(i) === '(') {
                 auxStack.push(expression.get(i)); // Empilhar o parêntese de abertura
             } else if (expression.get(i) === ')') {
@@ -147,13 +119,13 @@ export class ValidateExpression {
                     return false; // Parêntese de fechamento sem correspondente de abertura
                 }
             }
-        }
+        } 
 
-        // Verificar se todos os parênteses de abertura têm correspondente de fechamento
+        // Check that all opening parentheses have a corresponding closing
         return auxStack.isEmpty();
     };
 
-    // verificacao geral
+    // General verify
     checkSyntaxExpression = (inputExpression: string): boolean => {
         return  this.hasNumberAfterOperator(inputExpression) &&
                 this.hasMoreNumberThanOperator(inputExpression) &&
