@@ -1,4 +1,3 @@
-// import { DynamicStack } from "../../src/utils/DynamicStack";
 import { ValidateExpression } from "../../src/utils/ValidateExpression";
 
 describe("ValidateExpression", () => {
@@ -7,8 +6,6 @@ describe("ValidateExpression", () => {
   beforeEach(() => {
     validator = new ValidateExpression();
   });
-
-
 
   test("checkSyntaxExpression", () => {
     expect(validator.checkSyntaxExpression("2+3")).toBe(true);

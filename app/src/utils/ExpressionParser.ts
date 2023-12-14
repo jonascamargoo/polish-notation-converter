@@ -2,7 +2,7 @@ import { DynamicStack } from './DynamicStack';
 import { ValidateExpression } from './ValidateExpression'
 
 // The auxStack is used to temporarily store operators and parentheses while the expression is being traversed and characters are being processed. It assists in determining the correct order of operators and in handling parentheses during the conversion process
-export const parser = (inputExpression: string): string => {
+export const parse = (inputExpression: string): string => {
     const validator = new ValidateExpression();
     const expression = validator.validate(inputExpression);
     const auxStack = new DynamicStack<string>();
@@ -17,7 +17,6 @@ export const parser = (inputExpression: string): string => {
         if(current == '(')
             auxStack.push(current);
 
-        //  ele vai eliminar os itens da pilha auxiliar e ira adicionar um por um dentro da expressao pos-fixa, exceto os (. Ou seja, ele busca os digitos e operadores e vai adicionando em postfixExpression
         if(current == ')') {
             while(!auxStack.isEmpty()) {
                 const charAux = auxStack.pop();
@@ -39,10 +38,10 @@ export const parser = (inputExpression: string): string => {
                         auxStack.push(charAux);
                         break;
                     }
+                    //Here, we determine the priority order. The selected number is added to auxStack and will be appended to postfixExpression at a later stage
+                    if(validator.isOperator(charAux)) {
 
-                    if(validator.isOperator(charAux)) {// aqui eh analisada a ordem de prioridade dos operadores
-
-                        if(validator.checkPriority(current, charAux)) { //o item de maior prioridade eh adicionado a pilha auxilar, a fim de ser adicionado a postfixExpression posteriormente
+                        if(validator.checkPriority(current, charAux)) {
                             auxStack.push(charAux);
                             break;
                         } else {
@@ -51,15 +50,15 @@ export const parser = (inputExpression: string): string => {
 
                         }
                     }
-                    
+                    // Here, the replacement of the item with higher priority by the one with lower priority takes place
                 }
-                auxStack.push(current); //aqui ocorre a substituicao do item de maior prioridade pelo de menor
+                auxStack.push(current);
             }
             
         }
     }    
 
-    // aqui os itens que sobraram na pilha auxiliar sao adicionados
+    // Here we added remaining items to postfix Expression
     while(!auxStack.isEmpty())
         postfixExpression += auxStack.pop() + ' ';
 
