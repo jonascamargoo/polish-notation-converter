@@ -2,8 +2,7 @@ import { DynamicStack } from "./DynamicStack";
 
 export class ValidateExpression {
 
-
-    hasNumberAfterOperator = (inputExpression: string): boolean => {
+    private hasNumberAfterOperator = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
         for (let i = 1; i < expression.getSize(); i++) {
             if (
@@ -17,7 +16,7 @@ export class ValidateExpression {
     };
     
 
-    isOperator = (character: string): boolean => {
+    private isOperator = (character: string): boolean => {
         return  character == '+' ||
                 character == '-' ||
                 character == '*' ||
@@ -27,17 +26,16 @@ export class ValidateExpression {
 
     };
 
-    isDigit = (character: string): boolean => {
+    private isDigit = (character: string): boolean => {
         return !isNaN(parseInt(character));
     };
 
-    isParenthesis = (character: string): boolean => {
+    private isParenthesis = (character: string): boolean => {
         return  character == '(' ||
                 character == ')';
     };
 
-
-    getPrecedence = (operator: string): number => {
+    private getPrecedence = (operator: string): number => {
         switch (operator) {
             case '+':
             case '-':
@@ -52,9 +50,8 @@ export class ValidateExpression {
         }
     };
 
-    
     // checks for two consecutive digits
-    numberHasOneDigit = (inputExpression: string): boolean => {
+    private numberHasOneDigit = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
         for (let i = 1; i < expression.getSize() - 1; i++) {
             if(
@@ -67,12 +64,12 @@ export class ValidateExpression {
 
     };
 
-    checkPriority = (operator1: string, operator2: string): boolean => {
+    private checkPriority = (operator1: string, operator2: string): boolean => {
         return this.getPrecedence(operator1) > this.getPrecedence(operator2);
     };
 
     // checks if the number of operators is greater than the number of numbers
-    hasMoreNumberThanOperator = (inputExpression: string): boolean => {
+    private hasMoreNumberThanOperator = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
         let countOperator = 0, countNumber = 0;
         for(let i = 0; i < expression.getSize(); i++) {
@@ -84,10 +81,8 @@ export class ValidateExpression {
         if(countNumber > countOperator) return true;
         return false;
     };
-
-
    
-    checkBasePeek = (inputExpression: string): boolean => {
+    private checkBasePeek = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
         // Check base and top
         if (expression.peek() !== ')' && !this.isDigit(expression.peek()))
@@ -95,11 +90,9 @@ export class ValidateExpression {
         if (expression.base() !== '(' && !this.isDigit(expression.base()))
             return false;
         return true;
-    };
+    };   
 
-   
-
-    validateParenthesesExpression = (inputExpression: string): boolean => {
+    private validateParenthesesExpression = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
 
         // Check if the expression has balanced parentheses
@@ -126,7 +119,7 @@ export class ValidateExpression {
     };
 
     // General verify
-    checkSyntaxExpression = (inputExpression: string): boolean => {
+    public  checkSyntaxExpression = (inputExpression: string): boolean => {
         return  this.hasNumberAfterOperator(inputExpression) &&
                 this.hasMoreNumberThanOperator(inputExpression) &&
                 this.validateParenthesesExpression(inputExpression) &&
