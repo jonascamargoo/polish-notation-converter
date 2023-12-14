@@ -2,17 +2,17 @@ import { DynamicStack } from './DynamicStack';
 import { ValidateExpression } from './ValidateExpression'
 
 // The auxStack is used to temporarily store operators and parentheses while the expression is being traversed and characters are being processed. It assists in determining the correct order of operators and in handling parentheses during the conversion process
-export const initParse = (inputExpression: string): string => {
+export const parser = (inputExpression: string): string => {
     const validator = new ValidateExpression();
     const expression = validator.validate(inputExpression);
     const auxStack = new DynamicStack<string>();
-    let postfixExpression: string = "";
+    let postfixExpression: string = '';
 
     for (let i = 0; i <= expression.getSize() - 1; i++) {
         const current = expression.get(i);
 
         if(validator.isDigit(current))
-            postfixExpression += current.charAt + "";
+            postfixExpression += current + ' ';
 
         if(current == '(')
             auxStack.push(current);
@@ -22,7 +22,7 @@ export const initParse = (inputExpression: string): string => {
             while(!auxStack.isEmpty()) {
                 const charAux = auxStack.pop();
                 if(charAux !== '(') {
-                    postfixExpression += charAux + " ";
+                    postfixExpression += charAux + ' ';
                 } else {
                     break;
                 }
@@ -63,7 +63,7 @@ export const initParse = (inputExpression: string): string => {
     while(!auxStack.isEmpty())
         postfixExpression += auxStack.pop() + ' ';
 
-    return postfixExpression;
+    return postfixExpression.trim();
 
 }
 
