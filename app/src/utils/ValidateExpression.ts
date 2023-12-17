@@ -4,7 +4,7 @@ export class ValidateExpression {
 
     public validate(inputExpression: string): DynamicStack<string> {
         if(!this.checkSyntaxExpression(inputExpression))
-            throw new Error();
+            throw new Error('Invalid expression');
         return DynamicStack.splitString(inputExpression);
          
     }
