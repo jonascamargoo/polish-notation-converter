@@ -1,4 +1,4 @@
-import { ExpressionParser } from '../../src/utils/ExpressionParser';
+import { ExpressionParser } from '../../src/services/ExpressionParser';
 
 describe('ExpressionParser class', () => {
   it('should parse a simple expression with digits and parentheses', () => {

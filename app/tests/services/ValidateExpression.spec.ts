@@ -1,4 +1,4 @@
-import { ValidateExpression } from "../../src/utils/ValidateExpression";
+import { ValidateExpression } from "../../src/services/ValidateExpression";
 
 describe("ValidateExpression", () => {
   let validator: ValidateExpression;
