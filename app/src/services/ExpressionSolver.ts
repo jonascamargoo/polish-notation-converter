@@ -1,4 +1,4 @@
-import { DynamicStack } from './DynamicStack';
+import { DynamicStack } from '../utils/DynamicStack';
 import { ValidateExpression } from './ValidateExpression';
 
 export class ExpressionSolver {
