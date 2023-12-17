@@ -7,7 +7,7 @@ describe("ValidateExpression", () => {
     validator = new ValidateExpression();
   });
 
-  test("checkSyntaxExpression", () => {
+  it("checkSyntaxExpression", () => {
     expect(validator.checkSyntaxExpression("2+3")).toBe(true);
     expect(validator.checkSyntaxExpression("")).toBe(false);
     expect(validator.checkSyntaxExpression("(3+2)")).toBe(true);
