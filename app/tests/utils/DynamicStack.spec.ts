@@ -7,7 +7,7 @@ describe('DynamicStack', () => {
     stack = new DynamicStack<number>();
   });
 
-  test('push and pop', () => {
+  it('push and pop', () => {
     stack.push(1);
     stack.push(2);
     stack.push(3);
@@ -18,13 +18,13 @@ describe('DynamicStack', () => {
     expect(() => stack.pop()).toThrowError("Empity stack");
   });
 
-  test('peek', () => {
+  it('peek', () => {
     stack.push(42);
     expect(stack.peek()).toBe(42);
     expect(() => stack.pop()).not.toThrowError();
   });
 
-  test('base', () => {
+  it('base', () => {
     stack.push(10);
     stack.push(20);
     stack.push(30);
@@ -36,7 +36,7 @@ describe('DynamicStack', () => {
 
   });
 
-  test('get', () => {
+  it('get', () => {
     expect(() => stack.get(0)).toThrowError('Invalid position');
     
     stack.push(10);
@@ -49,7 +49,7 @@ describe('DynamicStack', () => {
     expect(() => stack.get(3)).toThrowError('Invalid position');
   });
 
-  test('print', () => {
+  it('print', () => {
     // Redirecting console output to verify console.log
     const consoleLogSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
     
@@ -72,7 +72,7 @@ describe('DynamicStack', () => {
 });
 
 describe('Cell', () => {
-  test('create Cell', () => {
+  it('create Cell', () => {
     const cell = new Cell(42);
     expect(cell.item).toBe(42);
     expect(cell.next).toBeUndefined();

@@ -22,6 +22,7 @@ export class ValidateExpression {
         return !isNaN(parseInt(character));
     };
 
+
     public isParenthesis = (character: string): boolean => {
         return  character == '(' ||
                 character == ')';
