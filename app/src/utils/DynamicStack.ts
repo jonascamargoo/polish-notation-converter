@@ -11,14 +11,14 @@ export class DynamicStack<T>{
         protected size: number = 0
     ) {}
 
-    push(item: T): void {
+    public push(item: T): void {
         const newCell = new Cell<T>(item);
         newCell.next = this.top;
         this.top = newCell;
         this.size++;
     }
 
-    pop(): T {
+    public pop(): T {
         if (this.isEmpty())
           throw new Error("Empity stack");
         const aux: T = this.top!.item;
@@ -27,15 +27,15 @@ export class DynamicStack<T>{
         return aux;
     }
 
-    isEmpty = (): boolean => this.top === undefined;
+    public isEmpty = (): boolean => this.top === undefined;
 
-    getSize = (): number => this.size;
+    public getSize = (): number => this.size;
 
-    peek = (): T => this.get(this.size - 1);
+    public peek = (): T => this.get(this.size - 1);
 
-    base = (): T => this.get(0);
+    public base = (): T => this.get(0);
     
-    get = (position: number): T => {
+    public get = (position: number): T => {
         if (position < 0 || position >= this.size)
             throw new Error("Invalid position");
         let current: Cell<T> | undefined = this.top;
@@ -51,7 +51,7 @@ export class DynamicStack<T>{
 
 
 
-    static splitString(inputString: string): DynamicStack<string> {
+    public static splitString(inputString: string): DynamicStack<string> {
         const stack = new DynamicStack<string>();
         for (let i = 0; i < inputString.length; i++) {
             stack.push(inputString[i]);
@@ -60,7 +60,7 @@ export class DynamicStack<T>{
     }
 
     
-    print(): void {
+    public print(): void {
         if (this.isEmpty())
           console.log("Empity stack");
         console.log("Base\n")

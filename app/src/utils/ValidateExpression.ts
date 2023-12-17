@@ -29,25 +29,21 @@ export class ValidateExpression {
     };
 
     public getPrecedence = (operator: string): number => {
-        switch (operator) {
-            case '+':
-            case '-':
-                return 1;
-            case '*':
-            case '/':
-                return 2;
-            case '^':
-                return 3;
-            default:
-                return 0;
-        }
+        const precedenceMapping: { [key: string]: number } = {
+            '+': 1,
+            '-': 1,
+            '*': 2,
+            '/': 2,
+            '^': 3,
+        };
+    
+        return precedenceMapping[operator] || 0;
     };
 
     public checkPriority(operator1: string, operator2: string): boolean {
         return  this.getPrecedence(operator1) > this.getPrecedence(operator2);
 
     }
-
 
     public checkSyntaxExpression = (inputExpression: string): boolean => {
         return  this.hasNumberAfterOperator(inputExpression) &&
