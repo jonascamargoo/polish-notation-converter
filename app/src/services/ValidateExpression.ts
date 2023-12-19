@@ -103,20 +103,18 @@ export class ValidateExpression {
     public validateParenthesesExpression = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
 
-        if (!this.checkBasePeek(inputExpression)) {
+        if (!this.checkBasePeek(inputExpression)) 
             return false;
-        }
-
+        
         const auxStack = new DynamicStack<string>();
         for (let i = 0; i <= expression.getSize() - 1; i++) {
-            if (expression.get(i) === '(') {
+            if (expression.get(i) === '(') 
                 auxStack.push(expression.get(i)); 
-            } else if (expression.get(i) === ')') {
-                if (!auxStack.isEmpty() && auxStack.peek() === '(') {
+             else if (expression.get(i) === ')') 
+                if (!auxStack.isEmpty() && auxStack.peek() === '(') 
                     auxStack.pop(); 
-                } else {
+                 else {
                     return false;
-                }
             }
         } 
 

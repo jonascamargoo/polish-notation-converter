@@ -1,0 +1,56 @@
+body {
+    height: 100vh;
+    background: #333;
+    display: grid;
+    align-items: center;
+    color: #FFFFFF;
+}
+ 
+
+.container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 8px;
+    gap: 10px;
+    
+}
+
+.main-container input, output {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    padding: 1rem;
+    
+    
+}
+
+.main-container button {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    padding: 1rem;
+    
+}
+
+
+
+.main-container {
+    text-align: center;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    gap: 25px;
+    background: #E1E1E1
+
+
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+
