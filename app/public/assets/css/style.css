@@ -1,38 +1,19 @@
 body {
-    height: 100vh;
     background: #333;
-    display: grid;
+    display: flex;
     align-items: center;
     color: #FFFFFF;
-}
- 
-
-.container {
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 8px;
+    
     gap: 10px;
-    
-}
-
-.main-container input, output {
     font-family:Georgia, 'Times New Roman', Times, serif;
     font-style: italic;
-    padding: 1rem;
-    
-    
+    margin: 2.5rem;
 }
-
-.main-container button {
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    font-style: italic;
-    padding: 1rem;
-    
-}
-
 
 
 .main-container {
@@ -41,12 +22,33 @@ body {
     /* align-items: center; */
     justify-content: center;
     flex-direction: column;
-    padding: 10px;
-    gap: 25px;
-    background: #E1E1E1
-
+    padding: 1.5rem;
+    gap: 1rem;
+    background: #E1E1E1;
+    border-radius: 15px;
 
 }
+ 
+.title {
+    /* font-size: 20px; */
+}
+
+
+.main-container input, output {
+    background: #747171;
+    padding: 1.5rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    
+    
+}
+
+.main-container button {
+    margin: 1.5rem;
+    padding: 2rem;
+    
+}
+
 
 .button-container {
     display: flex;

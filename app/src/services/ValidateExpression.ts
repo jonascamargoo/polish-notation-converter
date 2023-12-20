@@ -2,11 +2,10 @@ import { DynamicStack } from "../utils/DynamicStack";
 
 export class ValidateExpression {
 
-    public validate(inputExpression: string): DynamicStack<string> {
+    public validate = (inputExpression: string): DynamicStack<string> => {
         if(!this.checkSyntaxExpression(inputExpression))
             throw new Error('Invalid expression');
         return DynamicStack.splitString(inputExpression);
-         
     }
 
     public isOperator = (character: string): boolean => {
@@ -36,14 +35,10 @@ export class ValidateExpression {
             '/': 2,
             '^': 3,
         };
-    
         return precedenceMapping[operator] || 0;
     };
 
-    public checkPriority(operator1: string, operator2: string): boolean {
-        return  this.getPrecedence(operator1) > this.getPrecedence(operator2);
-
-    }
+    public checkPriority = (operator1: string, operator2: string): boolean => this.getPrecedence(operator1) > this.getPrecedence(operator2);
 
     public checkSyntaxExpression = (inputExpression: string): boolean => {
         return  this.hasNumberAfterOperator(inputExpression) &&
@@ -85,7 +80,6 @@ export class ValidateExpression {
             if(this.isOperator(character)) countOperator++;
             if(this.isDigit(character)) countNumber++;
         }
-
         if(countNumber > countOperator) return true;
         return false;
     };
@@ -102,10 +96,8 @@ export class ValidateExpression {
 
     public validateParenthesesExpression = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
-
         if (!this.checkBasePeek(inputExpression)) 
             return false;
-        
         const auxStack = new DynamicStack<string>();
         for (let i = 0; i <= expression.getSize() - 1; i++) {
             if (expression.get(i) === '(') 
@@ -117,8 +109,9 @@ export class ValidateExpression {
                     return false;
             }
         } 
-
         // Check that all opening parentheses have a corresponding closing
         return auxStack.isEmpty();
     };
 }
+
+

@@ -11,14 +11,14 @@ export class DynamicStack<T>{
         protected size: number = 0
     ) {}
 
-    public push(item: T): void {
+    public push = (item: T): void => {
         const newCell = new Cell<T>(item);
         newCell.next = this.top;
         this.top = newCell;
         this.size++;
     }
 
-    public pop(): T {
+    public pop = (): T => {
         if (this.isEmpty())
           throw new Error("Empity stack");
         const aux: T = this.top!.item;
@@ -51,16 +51,17 @@ export class DynamicStack<T>{
 
 
 
-    public static splitString(inputString: string): DynamicStack<string> {
+    public static splitString = (inputString: string): DynamicStack<string> => {
         const stack = new DynamicStack<string>();
-        for (let i = 0; i < inputString.length; i++) {
+        for (let i = 0; i < inputString.length; i++)
             stack.push(inputString[i]);
-        }
         return stack;
     }
 
+   
+
     
-    public print(): void {
+    public print = (): void => {
         if (this.isEmpty())
           console.log("Empity stack");
         console.log("Base\n")
