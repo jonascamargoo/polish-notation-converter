@@ -4,16 +4,16 @@ import { ValidateExpression } from './ValidateExpression'
 // The auxStack is used to temporarily store operators and parentheses while the expression is being traversed and characters are being processed. It assists in determining the correct order of operators and in handling parentheses during the conversion process
 
 
-export class ExpressionParser {
+export class ExpressionConverter {
     
     constructor(
         private validator = new ValidateExpression(),
         private auxStack = new DynamicStack<string>(),
-        private postfixExpression = ''
+        private postfixExpression = '',
+        private prefixExpression = ''
     ) {}
 
-    public parse = (inputExpression: string): string => {
-        // Validar a expressão e armazená-la na pilha 'expression'
+    public convertToPostfix  = (inputExpression: string): string => {
         const expression = this.validator.validate(inputExpression);
 
         for (let i = 0; i <= expression.getSize() - 1; i++) {
@@ -26,12 +26,32 @@ export class ExpressionParser {
                 this.handleOperatorToken(current);
         }    
 
-        // Adicionar itens restantes à expressão postfix
+        // Add remaining items to the postfix expression
         while(!this.auxStack.isEmpty())
             this.postfixExpression += this.auxStack.pop() + ' ';
     
         return this.postfixExpression.trim();
     }
+
+    // public convertToInfix = (inputExpression: string): string => {
+    //     const expression = this.validator.validate(inputExpression);
+    //     this.prefixExpression = '';
+
+    //     for (let i = 0; i < expression.getSize(); i++) {
+    //         const current = expression.get(i);
+
+    //         if (this.validator.isDigit(current)) {
+    //             this.auxStack.push(current);
+    //         } else if (this.validator.isOperator(current)) {
+    //             const operand2 = this.auxStack.pop();
+    //             const operand1 = this.auxStack.pop();
+    //             this.auxStack.push(`${current}${operand1}${operand2}`);
+    //         }
+    //     }
+
+    //     this.prefixExpression = this.auxStack.pop() || '';
+    //     return this.prefixExpression;
+    // };
 
     private handleDigitToken = (current: string): void => {
         this.postfixExpression += current + ' ';
