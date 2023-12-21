@@ -9,8 +9,9 @@ export class ExpressionConverter {
     
     constructor(
         private validator = new ValidateExpression(),
-        private auxStack = new DynamicStack<string>(),  // POSSIBLE BUG, UNINTENDED STATE CHANGE
-        private postfixExpression = '',                 // POSSIBLE BUG, UNINTENDED STATE CHANGE
+        private auxStack = new DynamicStack<string>(), 
+        private postfixExpression = '',
+        private infixExpression = '',           
         
     ) {}
 
@@ -35,22 +36,25 @@ export class ExpressionConverter {
     }
 
     // I don't have to return a stack here, because when I perform the operation, it will be in postfix
-    // public convertToInfix = (inputExpression: string): string => {
-    //     const validatedExpression = this.validator.validate(inputExpression); // por enquanto, vou fingir que foi validada - implementar em seguida
-    //     let expression = '';
-    //     let op1, op2, current: string;
-    //     for (let i = 0; i < validatedExpression.getSize(); i++) {
-    //         current = inputExpression.charAt(i);
-    //         if(this.validator.isOperator(current)) { // Considerando que a expressao foi validada
-    //             op1 = validatedExpression.pop();
-    //             op2 = validatedExpression.pop();
-    //             expression += `(${op2} ${current} ${op1})`;
-    //         } else {
-    //             expression += current;
-    //         } 
-    //     }
-    //     return expression;
-    // };
+    public convertToInfix = (inputExpression: string): string => {
+        const validatedExpression = this.validator.validatePostfix(inputExpression);
+        const expression = new DynamicStack<string>();
+        let current: string;
+        for (let i = 0; i < validatedExpression.length; i++) {
+            let op1, op2: string;
+            current = validatedExpression.charAt(i);
+            if(this.validator.isDigit(current)) {
+                expression.push(current);
+            }
+            if(this.validator.isOperator(current)) {
+                op1 = expression.pop();
+                op2 = expression.pop();
+                expression.push(`(${op2} ${current} ${op1})`);
+            }
+        }
+        this.infixExpression = expression.pop();
+        return this.infixExpression.trim();
+    };
 
 
 

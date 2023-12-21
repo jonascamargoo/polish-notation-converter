@@ -8,6 +8,12 @@ export class ValidateExpression {
         return DynamicStack.splitString(inputExpression);
     }
 
+    public validatePostfix = (inputExpression: string): string => {
+        if(!this.hasMoreNumberThanOperator(inputExpression))
+            throw new Error('Invalid expression');
+        return inputExpression;
+    }
+
     public isOperator = (character: string): boolean => {
         return  character == '+' ||
                 character == '-' ||
@@ -72,18 +78,6 @@ export class ValidateExpression {
         return true;
     };
 
-    public hasMoreNumberThanOperator = (inputExpression: string): boolean => {
-        const expression = DynamicStack.splitString(inputExpression);
-        let countOperator = 0, countNumber = 0;
-        for(let i = 0; i < expression.getSize(); i++) {
-            const character = expression.get(i);
-            if(this.isOperator(character)) countOperator++;
-            if(this.isDigit(character)) countNumber++;
-        }
-        if(countNumber > countOperator) return true;
-        return false;
-    };
-
     public checkBasePeek = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
         // Check base and top
@@ -93,6 +87,21 @@ export class ValidateExpression {
             return false;
         return true;
     };
+
+    public hasMoreNumberThanOperator = (inputExpression: string): boolean => {
+        let digitCounter = 0, operatorCounter = 0;
+        let current: string;
+        for (let i = 0; i < inputExpression.length; i++) {
+            current = inputExpression.charAt(i);
+            if(this.isDigit(current))
+                digitCounter++;
+            if(this.isOperator(current))
+                operatorCounter++;
+        }
+        if((digitCounter > operatorCounter) && operatorCounter > 0)
+            return true;
+        return false;
+    }
 
     public validateParenthesesExpression = (inputExpression: string): boolean => {
         const expression = DynamicStack.splitString(inputExpression);
