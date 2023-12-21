@@ -9,10 +9,10 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "jsx": "preserve",
-    "outDir": "./dist",
+    "outDir": "app/dist",
     "rootDir": "./app",
     "types": ["node", "jest"]
   },
-  "include": ["app/**/*.ts"],
+  "include": ["app/src/**/*.ts"],
   "exclude": ["node_modules"]
 }
