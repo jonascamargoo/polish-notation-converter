@@ -5,18 +5,19 @@ import { ValidateExpression } from './ValidateExpression'
 
 
 export class ExpressionConverter {
+
     
     constructor(
         private validator = new ValidateExpression(),
-        private auxStack = new DynamicStack<string>(),
-        private postfixExpression = '',
-        private prefixExpression = ''
+        private auxStack = new DynamicStack<string>(),  // POSSIBLE BUG, UNINTENDED STATE CHANGE
+        private postfixExpression = '',                 // POSSIBLE BUG, UNINTENDED STATE CHANGE
+        
     ) {}
 
     public convertToPostfix  = (inputExpression: string): string => {
         const expression = this.validator.validate(inputExpression);
 
-        for (let i = 0; i <= expression.getSize() - 1; i++) {
+        for (let i = 0; i < expression.getSize(); i++) {
             const current = expression.get(i);
             if(this.validator.isDigit(current))
                 this.handleDigitToken(current);
@@ -33,25 +34,25 @@ export class ExpressionConverter {
         return this.postfixExpression.trim();
     }
 
+    // I don't have to return a stack here, because when I perform the operation, it will be in postfix
     // public convertToInfix = (inputExpression: string): string => {
-    //     const expression = this.validator.validate(inputExpression);
-    //     this.prefixExpression = '';
-
-    //     for (let i = 0; i < expression.getSize(); i++) {
-    //         const current = expression.get(i);
-
-    //         if (this.validator.isDigit(current)) {
-    //             this.auxStack.push(current);
-    //         } else if (this.validator.isOperator(current)) {
-    //             const operand2 = this.auxStack.pop();
-    //             const operand1 = this.auxStack.pop();
-    //             this.auxStack.push(`${current}${operand1}${operand2}`);
-    //         }
+    //     const validatedExpression = this.validator.validate(inputExpression); // por enquanto, vou fingir que foi validada - implementar em seguida
+    //     let expression = '';
+    //     let op1, op2, current: string;
+    //     for (let i = 0; i < validatedExpression.getSize(); i++) {
+    //         current = inputExpression.charAt(i);
+    //         if(this.validator.isOperator(current)) { // Considerando que a expressao foi validada
+    //             op1 = validatedExpression.pop();
+    //             op2 = validatedExpression.pop();
+    //             expression += `(${op2} ${current} ${op1})`;
+    //         } else {
+    //             expression += current;
+    //         } 
     //     }
-
-    //     this.prefixExpression = this.auxStack.pop() || '';
-    //     return this.prefixExpression;
+    //     return expression;
     // };
+
+
 
     private handleDigitToken = (current: string): void => {
         this.postfixExpression += current + ' ';
