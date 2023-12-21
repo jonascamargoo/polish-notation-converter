@@ -1,4 +1,4 @@
-import { DynamicStack } from "../utils/DynamicStack";
+import { DynamicStack } from "../utils/DynamicStack.js";
 
 export class ValidateExpression {
 

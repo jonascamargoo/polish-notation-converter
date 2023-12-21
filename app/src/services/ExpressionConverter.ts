@@ -1,5 +1,5 @@
-import { DynamicStack } from '../utils/DynamicStack';
-import { ValidateExpression } from './ValidateExpression'
+import { DynamicStack } from '../utils/DynamicStack.js';
+import { ValidateExpression } from './ValidateExpression.js'
 
 // The auxStack is used to temporarily store operators and parentheses while the expression is being traversed and characters are being processed. It assists in determining the correct order of operators and in handling parentheses during the conversion process
 

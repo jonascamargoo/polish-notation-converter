@@ -1,6 +1,6 @@
-import { ExpressionConverter } from "../services/ExpressionConverter";
-import { ValidateExpression } from "../services/ValidateExpression";
-import { ExpressionSolver } from "../services/ExpressionSolver";
+import { ExpressionConverter } from "../services/ExpressionConverter.js";
+import { ValidateExpression } from "../services/ValidateExpression.js";
+import { ExpressionSolver } from "../services/ExpressionSolver.js";
 
 export class ExpressionController {
  
