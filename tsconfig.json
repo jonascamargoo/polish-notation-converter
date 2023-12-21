@@ -10,9 +10,9 @@
     "moduleResolution": "node",
     "jsx": "preserve",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./app",
     "types": ["node", "jest"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["app/**/*.ts"],
   "exclude": ["node_modules"]
 }
