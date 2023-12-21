@@ -1,5 +1,5 @@
-import { DynamicStack } from '../utils/DynamicStack';
-import { ValidateExpression } from './ValidateExpression';
+import { DynamicStack } from '../utils/DynamicStack.js';
+import { ValidateExpression } from './ValidateExpression.js';
 
 export class ExpressionSolver {
     constructor(protected validator: ValidateExpression) {}

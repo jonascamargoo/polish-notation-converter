@@ -1,4 +1,4 @@
-import { ExpressionController } from "./controllers/ExpressionController";
+import { ExpressionController } from "./controllers/ExpressionController.js";
 
 const controller = new ExpressionController();
 const swapBtn = document.querySelector('#swap') as HTMLButtonElement;
