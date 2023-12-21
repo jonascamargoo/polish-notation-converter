@@ -1,4 +1,4 @@
-import { DynamicStack, Cell } from "../../src/utils/DynamicStack";
+import { DynamicStack, Cell } from '../../src/utils/DynamicStack';
 
 describe('DynamicStack', () => {
   let stack: DynamicStack<number>;
@@ -15,7 +15,7 @@ describe('DynamicStack', () => {
     expect(stack.pop()).toBe(3);
     expect(stack.pop()).toBe(2);
     expect(stack.pop()).toBe(1);
-    expect(() => stack.pop()).toThrowError("Empity stack");
+    expect(() => stack.pop()).toThrowError('Empity stack');
   });
 
   it('peek', () => {
