@@ -1,5 +1,5 @@
-import { ExpressionSolver } from "../../src/services/ExpressionSolver";
-import { ValidateExpression } from "../../src/services/ValidateExpression";
+import { ExpressionSolver } from '../../src/services/ExpressionSolver';
+import { ValidateExpression } from '../../src/services/ValidateExpression';
 
 describe('ExpressionSolver class', () => {
   let solver: ExpressionSolver;
