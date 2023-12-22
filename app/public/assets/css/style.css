@@ -1,28 +1,27 @@
-/* * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} */
+}
 
 body {
-    background: #333;
-    display: flex;
-    align-items: center;
-    color: #FFFFFF;
-    text-align: center;
+    height: 100vh;
+    
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-   
+    text-align: center;
+    background: #333;
+    color: #FFFFFF;  
     gap: 10px;
     font-family:Georgia, 'Times New Roman', Times, serif;
     font-style: italic;
-    margin: 1.5rem;
+    
 }
 
 
-.main-container {
+.container {
     text-align: center;
     display: flex;
     justify-content: center;alingn-items: center;
@@ -39,7 +38,7 @@ body {
 }
 
 
-.main-container input, output {
+.container input, output {
     background: #747171;
     color: #000000;
     padding: 1.3rem;
@@ -55,7 +54,7 @@ body {
     flex-direction: center: */
 }
 
-.main-container button {
+.container button {
     margin: 1.5rem;
     background: #747171;
     height: 1rem;
@@ -67,8 +66,9 @@ body {
 
 
 .button-container {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 
