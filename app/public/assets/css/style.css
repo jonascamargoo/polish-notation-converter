@@ -6,7 +6,6 @@
 
 body {
     height: 100vh;
-    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,7 +19,6 @@ body {
     
 }
 
-
 .container {
     text-align: center;
     display: flex;
@@ -32,11 +30,6 @@ body {
     border-radius: 15px;
 
 }
- 
-.title {
-    /* font-size: 20px; */
-}
-
 
 .container input, output {
     background: #747171;
@@ -46,15 +39,18 @@ body {
     border: 1px solid transparent;
     border-radius: 5px;
     color: #FFFFFF;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    font-style: italic;
-    font-size: 1.2rem;
     text-align: center;
-    /* display: flex;
-    flex-direction: center: */
+    font-size: 1.2rem;
+
 }
 
-.container button {
+.button-container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.button-container button {
     margin: 1.5rem;
     background: #747171;
     height: 1rem;
@@ -63,12 +59,3 @@ body {
     border: 1px solid transparent;
     border-radius: 5px;
 }
-
-
-.button-container {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-
