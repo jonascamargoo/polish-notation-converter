@@ -30,9 +30,17 @@ export class ExpressionController {
   public swapNotation = (): void => {
     this.infixNotation = !this.infixNotation;
     this.inputExpression.value = '';
+    if(this.infixNotation) {
+      this.inputExpression.placeholder = '(infixa)';
+    } else {
+      this.inputExpression.placeholder = '(pós-fixa)';
+    }
     this.inputExpression.focus();
         
   }
+
+
+
 
   private solveFromInfix = (): void => {
     const postfixExpression = this.converter.convertToPostfix(this.inputExpression.value);

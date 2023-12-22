@@ -28,20 +28,30 @@ body {
     gap: 1rem;
     background: #E1E1E1;
     border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 5.05);
 
 }
 
 .container input, output {
     background: #747171;
-    color: #000000;
-    padding: 1.3rem;
-    margin: 0.5rem;
+    
+    padding: 1.5rem;
+    /* margin: 0.5rem; */
     border: 1px solid transparent;
     border-radius: 5px;
     color: #FFFFFF;
     text-align: center;
     font-size: 1.2rem;
 
+}
+
+input::placeholder {
+    color: #FFFFFF; 
+}
+
+.container output {
+    padding: 2rem;
+    /* max-height: 4rem; */
 }
 
 .button-container {
@@ -58,4 +68,5 @@ body {
     padding: 2rem;
     border: 1px solid transparent;
     border-radius: 5px;
+    cursor: pointer;
 }
