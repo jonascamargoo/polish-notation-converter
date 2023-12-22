@@ -13,7 +13,6 @@ export class ExpressionController {
         private printResult = document.querySelector('#result') as HTMLOutputElement,
   ) {}
 
-
   // Created a property named infixNotation. If it is set to true, I will proceed with solveFromInfix. If it is set to false, I will proceed with solveFromPostfix. However, for both cases, the final operation will always be performed in postfix form.
 
     
@@ -38,9 +37,6 @@ export class ExpressionController {
     this.inputExpression.focus();
         
   }
-
-
-
 
   private solveFromInfix = (): void => {
     const postfixExpression = this.converter.convertToPostfix(this.inputExpression.value);
