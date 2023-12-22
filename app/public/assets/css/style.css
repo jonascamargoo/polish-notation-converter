@@ -1,3 +1,9 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
 body {
     background: #333;
     display: flex;
@@ -8,19 +14,18 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    
+   
     gap: 10px;
     font-family:Georgia, 'Times New Roman', Times, serif;
     font-style: italic;
-    margin: 2.5rem;
+    margin: 1.5rem;
 }
 
 
 .main-container {
     text-align: center;
     display: flex;
-    /* align-items: center; */
-    justify-content: center;
+    justify-content: center;alingn-items: center;
     flex-direction: column;
     padding: 1.5rem;
     gap: 1rem;
@@ -36,17 +41,28 @@ body {
 
 .main-container input, output {
     background: #747171;
-    padding: 1.5rem;
+    color: #000000;
+    padding: 1.3rem;
+    margin: 0.5rem;
     border: 1px solid transparent;
     border-radius: 5px;
-    
-    
+    color: #FFFFFF;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    text-align: center;
+    /* display: flex;
+    flex-direction: center: */
 }
 
 .main-container button {
     margin: 1.5rem;
+    background: #747171;
+    height: 1rem;
+    width: 6rem;
     padding: 2rem;
-    
+    border: 1px solid transparent;
+    border-radius: 5px;
 }
 
 
