@@ -14,8 +14,7 @@ body {
     background: #333;
     color: #FFFFFF;  
     gap: 10px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    font-style: italic;
+    
     
 }
 
@@ -30,6 +29,10 @@ body {
     border-radius: 15px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 5.05);
 
+}
+title {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
 }
 
 .container input, output {
