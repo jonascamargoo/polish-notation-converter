@@ -8,7 +8,7 @@ A simple infix to postfix notation converter implemented in TypeScript, explorin
 
 - Performs the execution of the postfix expression operation
 
-## Instalação e Uso
+##  Usage
 
 1. Clone the repository:
    ```bash
