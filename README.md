@@ -22,5 +22,8 @@ A simple infix to postfix notation converter implemented in TypeScript, explorin
    yarn install
    yarn build
 
-![Alt text](/app/public/assets/imgs/image.png)
+<p align="center">
+  <img src="/app/public/assets/imgs/image.png" alt="">
+</p>
+
 
