@@ -13,7 +13,6 @@ A simple infix to postfix notation converter implemented in TypeScript, explorin
 1. Clone the repository:
    ```bash
    git clone https://github.com/jonascamargoo/polish-notation-converter.git
-   cd polish-notation-converter
 
 2. Installing dependencies and compiling TypeScript:
 
